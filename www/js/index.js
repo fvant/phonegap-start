@@ -37,9 +37,9 @@ var appmob = {
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-	alert('hi');	
-		var pushNotification = window.plugins.pushNotification;
-		pushNotification.register(this.successHandler, this.errorHandler,{"senderID":"323146162607","ecb":"app.onNotificationGCM"});
+	
+	var pushNotification = window.plugins.pushNotification;
+	pushNotification.register(this.successHandler, this.errorHandler,{"senderID":"323146162607","ecb":"app.onNotificationGCM"});
 		
     //    var parentElement = document.getElementById(id);
       //  var listeningElement = parentElement.querySelector('.listening');

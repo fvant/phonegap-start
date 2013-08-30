@@ -37,17 +37,19 @@ var app = {
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
+		
+		var pushNotification = window.plugins.pushNotification;
+		pushNotification.register(this.successHandler, this.errorHandler,{"senderID":"323146162607","ecb":"app.onNotificationGCM"});
+		
+    //    var parentElement = document.getElementById(id);
+      //  var listeningElement = parentElement.querySelector('.listening');
+        //var receivedElement = parentElement.querySelector('.received');
 
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
+       // listeningElement.setAttribute('style', 'display:none;');
+       // receivedElement.setAttribute('style', 'display:block;');
 
         console.log('Received Event: ' + id);
 		
-		var pushNotification = window.plugins.pushNotification;
-pushNotification.register(this.successHandler, this.errorHandler,{"senderID":"323146162607","ecb":"app.onNotificationGCM"});
 },
 // result contains any message sent from the plugin call
 successHandler: function(result) {

@@ -39,7 +39,7 @@ var appmob = {
     receivedEvent: function(id) {
 	
 	var pushNotification = window.plugins.pushNotification;
-	pushNotification.register(this.successHandler, this.errorHandler,{"senderID":"323146162607","ecb":"app.onNotificationGCM"});
+	pushNotification.register(this.successHandler, this.errorHandler,{"senderID":"323146162607","ecb":"appmob.onNotificationGCM"});
 		
     //    var parentElement = document.getElementById(id);
       //  var listeningElement = parentElement.querySelector('.listening');

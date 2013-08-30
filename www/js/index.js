@@ -48,6 +48,7 @@ var app = {
 		
 		var pushNotification = window.plugins.pushNotification;
 pushNotification.register(this.successHandler, this.errorHandler,{"senderID":"323146162607","ecb":"app.onNotificationGCM"});
+},
 // result contains any message sent from the plugin call
 successHandler: function(result) {
     alert('Callback Success! Result = '+result)
@@ -80,5 +81,5 @@ onNotificationGCM: function(e) {
               break;
         }
     }
-    }
+   
 };

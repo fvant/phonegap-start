@@ -17,6 +17,8 @@
  * under the License.
  */
 var appmob = {
+
+	var token= 0;
     // Application Constructor
     initialize: function() {
         this.bindEvents();
@@ -53,7 +55,8 @@ var appmob = {
 },
 // result contains any message sent from the plugin call
 successHandler: function(result) {
-    alert('Callback Success! Result = '+result)
+    alert('Callback Success! Result = '+result);
+	appmob.token = result;
 },
 errorHandler:function(error) {
     alert(error);

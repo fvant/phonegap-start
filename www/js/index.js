@@ -16,9 +16,10 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+var token = 0;
+
 var appmob = {
 
-	var token= 0;
     // Application Constructor
     initialize: function() {
         this.bindEvents();

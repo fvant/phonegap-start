@@ -31,7 +31,7 @@ $( "#searchForm" ).submit(function( event ) {
     url = $form.attr( "action" );
  
   // Send the data using post
-  var posting = $.post( url, { email: term, token: appmob.token} );
+  var posting = $.post( url, { email: term, token: token} );
  
   // Put the results in a div
   posting.done(function( data ) {
@@ -51,7 +51,7 @@ $( "#searchForm" ).submit(function( event ) {
 	<script type="text/javascript" src="PushNotification.js"></script>
 <script type="text/javascript">
             appmob.initialize();
-			$("result") = "["+appmob.token+"]";
+			$("result") = "["+token+"]";
         </script>
 </body>
 </html>

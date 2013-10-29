@@ -12,10 +12,11 @@
 
 <form action="http://54.200.84.199/reg.php" id="searchForm">
   <input type="text" name="email" placeholder="email">
+  <input id="tok" type="text" name="token">
   <input type="submit" value="Register">
 </form>
 <!-- the result of the search will be rendered inside this div -->
-<div id="result">leeg</div>
+<div id="result"></div>
 
 
 <script>
@@ -35,8 +36,7 @@ $( "#searchForm" ).submit(function( event ) {
  
   // Put the results in a div
   posting.done(function( data ) {
-    var content = $( data ).find( "#content" );
-    $( "#result" ).empty().append( content );
+    $( "#result" ).empty().append( data );
   });
 });
 </script>
@@ -51,9 +51,7 @@ $( "#searchForm" ).submit(function( event ) {
 	<script type="text/javascript" src="PushNotification.js"></script>
 <script type="text/javascript">
 
-token = "niks";
             appmob.initialize();
-			$("result").html = "["+token+"]";
         </script>
 </body>
 </html>

@@ -71,7 +71,7 @@ onNotificationGCM: function(e) {
                 {
                     console.log("Regid " + e.regid);
                     //alert('registration id = '+e.regid);
-					token = e.regid;
+					$("#tok").text = e.regid;
                 }
             break;
  

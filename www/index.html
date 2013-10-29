@@ -15,7 +15,7 @@
   <input type="submit" value="Register">
 </form>
 <!-- the result of the search will be rendered inside this div -->
-<div id="result"></div>
+<div id="result">leeg</div>
 
 
 <script>
@@ -31,7 +31,7 @@ $( "#searchForm" ).submit(function( event ) {
     url = $form.attr( "action" );
  
   // Send the data using post
-  var posting = $.post( url, { email: term, token: token} );
+  var posting = $.post( url, { 'email': term, 'token': token} );
  
   // Put the results in a div
   posting.done(function( data ) {
@@ -50,8 +50,9 @@ $( "#searchForm" ).submit(function( event ) {
 	<script type="text/javascript" src="phonegap.js"></script>
 	<script type="text/javascript" src="PushNotification.js"></script>
 <script type="text/javascript">
+var token = "";
             appmob.initialize();
-			$("result") = "["+token+"]";
+			$("result").html = "["+token+"]";
         </script>
 </body>
 </html>

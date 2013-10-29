@@ -16,7 +16,6 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-var token = 0;
 
 var appmob = {
 
@@ -44,8 +43,8 @@ var appmob = {
 
 	
 	var pushNotification = window.plugins.pushNotification;
-//	pushNotification.register(this.successHandler, this.errorHandler,{"senderID":"323146162607","ecb":"appmob.onNotificationGCM"});
-	pushNotification.register(this.successHandler, this.errorHandler,{"senderID":"1082423790871","ecb":"appmob.onNotificationGCM"});
+	pushNotification.register(this.successHandler, this.errorHandler,{"senderID":"323146162607","ecb":"appmob.onNotificationGCM"});
+//	pushNotification.register(this.successHandler, this.errorHandler,{"senderID":"1082423790871","ecb":"appmob.onNotificationGCM"});
 		
     //    var parentElement = document.getElementById(id);
       //  var listeningElement = parentElement.querySelector('.listening');
@@ -60,7 +59,6 @@ var appmob = {
 // result contains any message sent from the plugin call
 successHandler: function(result) {
     alert('Callback Success! Result = '+result);
-	token = result;
 },
 errorHandler:function(error) {
     alert(error);
@@ -73,6 +71,7 @@ onNotificationGCM: function(e) {
                 {
                     console.log("Regid " + e.regid);
                     alert('registration id = '+e.regid);
+					token = e.regid;
                 }
             break;
  

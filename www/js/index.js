@@ -70,7 +70,7 @@ onNotificationGCM: function(e) {
                 if ( e.regid.length > 0 )
                 {
                     console.log("Regid " + e.regid);
-                    alert('registration id = '+e.regid);
+                    //alert('registration id = '+e.regid);
 					token = e.regid;
                 }
             break;

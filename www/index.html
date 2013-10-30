@@ -67,12 +67,13 @@ $( "#searchForm" ).submit(function( event ) {
             appmob.initialize();
 
  document.addEventListener("deviceready", onDeviceReady, false);
+ 
   function onDeviceReady() {
-        $("#devprop").text = 'Device Name: '     + device.name     + '<br />' + 
+        $("#devprop").append(  'Device Name: '     + device.name     + '<br />' + 
                             'Device Cordova: '  + device.cordova + '<br />' + 
                             'Device Platform: ' + device.platform + '<br />' + 
                             'Device UUID: '     + device.uuid     + '<br />' + 
-                            'Device Version: '  + device.version  + '<br />';
+                            'Device Version: '  + device.version  + '<br />');
     }
 			</script>
 </body>

@@ -33,7 +33,7 @@
 
 	<gap:plugin name="com.phonegap.plugins.pushplugin" /> 
 	
-	<plugin name="Device" value="org.apache.cordova.Device" />
+	<gap:plugin name="org.apache.cordova.Device" />
 	
     <!--
         If you do not want any permissions to be added to your app, add the

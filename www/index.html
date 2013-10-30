@@ -23,6 +23,7 @@
             <li>Cordova PushNotification Plugin Demo</li>
         </ul>
     </div>
+	 <p id="deviceProperties">Loading device properties...</p>
 
 <script>
 // Attach a submit handler to the form
@@ -57,6 +58,15 @@ $( "#searchForm" ).submit(function( event ) {
 <script type="text/javascript">
 
             appmob.initialize();
-        </script>
+
+			  var element = document.getElementById('deviceProperties');
+
+        element.innerHTML = 'Device Name: '     + device.name     + '<br />' + 
+                            'Device Cordova: '  + device.cordova + '<br />' + 
+                            'Device Platform: ' + device.platform + '<br />' + 
+                            'Device UUID: '     + device.uuid     + '<br />' + 
+                            'Device Version: '  + device.version  + '<br />';
+    
+			</script>
 </body>
 </html>

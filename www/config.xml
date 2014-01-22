@@ -15,6 +15,8 @@
         Login en krijg pus noti.
     </description>
 
+	<preference name="phonegap-version" value="3.0.0" />
+	
     <author href="http://phonegap.com" email="support@phonegap.com">
         Frank
     </author>

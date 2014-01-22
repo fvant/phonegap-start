@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<form action="http://54.200.84.199/reg.php" id="searchForm">
+<form action="http://54.200.65.93/subscribers" id="searchForm">
   <input type="text" name="email" placeholder="email">
   <input id="tok" type="text" name="token">
   <input type="submit" value="Register">
@@ -51,12 +51,15 @@ $( "#searchForm" ).submit(function( event ) {
     url = $form.attr( "action" );
  
   // Send the data using post
-  var posting = $.post( url, { 'email': term, 'token': token} );
+  var posting = $.post( url, { 'token': token, 'proto':'c2dm', 'lang':'nl', 'badge': '0'} );
  
   // Put the results in a div
   posting.done(function( data ) {
     $( "#result" ).append( data );
   });
+  
+  data = $.get('http://54.200.65.93/event?events='+term);
+  $( "#result" ).append( data );
 });
 </script>
 

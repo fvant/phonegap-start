@@ -51,15 +51,16 @@ $( "#searchForm" ).submit(function( event ) {
     url = $form.attr( "action" );
  
   // Send the data using post
-  var posting = $.post( url, { 'token': token, 'proto':'c2dm', 'lang':'nl', 'badge': '0'} );
- 
-  // Put the results in a div
-  posting.done(function( data ) {
+  $.post( url, { 'token': token, 'proto':'c2dm', 'lang':'nl', 'badge': '0'} )
+    .done(function( data ) {
     $( "#result" ).append( data );
   });
   
-  data = $.get('http://54.200.65.93/event?events='+term);
-  $( "#result" ).append( data );
+  $.get('http://54.200.65.93:8080/event?events='+term)
+  .done(function( data) {
+  	alert('event');
+  	$( "#result" ).append( data );
+  )};
 });
 </script>
 

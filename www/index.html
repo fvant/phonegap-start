@@ -10,11 +10,11 @@
 </head>
 <body>
 
-<form action="http://54.200.65.93:8080/subscribers" id="searchForm">
-  <input type="text" name="email" placeholder="email">
-  <input id="tok" type="text" name="token">
-  <input type="submit" value="Register">
-</form>
+
+  <input type="text" name="emai" id='emai' placeholder="email">
+  <input id="tok" type="text" name="token" id='token'>
+  <input type="submit" value="Register" id='reg' >
+
 <!-- the result of the search will be rendered inside this div -->
 <div id="result"></div>
 
@@ -40,18 +40,16 @@
 	
 	<script>
 // Attach a submit handler to the form
-$( "#searchForm" ).submit(function( event ) {
+$( "#reg" ).click(function( event ) {
  
   // Stop form from submitting normally
   event.preventDefault();
  
-  // Get some values from elements on the page:
-  var $form = $( this ),
-    term = $form.find( "input[name='email']" ).val(),
-    url = $form.attr( "action" );
- 
+
+    var term = $( "#emai" ).val(), token = $('#token').val();
+   
   // Send the data using post
-  $.post( url, { 'token': token, 'proto':'c2dm', 'lang':'nl', 'badge': '0'} )
+  $.post( 'http://54.200.65.93:8080/subscribers', { 'token': token, 'proto':'c2dm', 'lang':'nl', 'badge': '0'} )
     .done(function( data ) {
     $( "#result" ).append( data );
   });

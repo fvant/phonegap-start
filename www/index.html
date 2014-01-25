@@ -49,16 +49,18 @@ $( "#reg" ).click(function( event ) {
     var term = $( "#emai" ).val(), token = $('#token').val();
    
   // Send the data using post
-  $.post( 'http://54.200.65.93:8080/subscribers', { 'token': token, 'proto':'c2dm', 'lang':'nl', 'badge': '0'} )
+  $.post( 'http://54.200.65.93:8080/subscribers', { 'token': token, 'proto':'gcm', 'lang':'nl', 'badge': '0'} )
     .done(function( data ) {
     $( "#result" ).append( data );
-  });
-  
-  $.get('http://54.200.65.93:8080/event?events='+term)
+	
+	  $.get('http://54.200.65.93:8080/subscriber/'+data.id+'/subscriptions/'+term)
   .done(function( data) {
   	alert('event');
   	$( "#result" ).append( data );
   });
+
+  });
+  
 });
 </script>
 

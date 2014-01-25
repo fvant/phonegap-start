@@ -12,11 +12,11 @@
 
 
   <input type="text" name="emai" id='emai' placeholder="email">
-  <input id="tok" type="text" name="token" id='token'>
+  <input id="tok" type="text" name="token" >
   <input type="submit" value="Register" id='reg' >
 
 <!-- the result of the search will be rendered inside this div -->
-<div id="result"></div>
+
 
     <div id="app-status-div">
         <ul id="app-status-ul">
@@ -25,6 +25,7 @@
     </div>
 	 <p id="devprop">Loading device properties...</p>
 
+	 <div id="result"></div>
     
 	<script type="text/javascript" src="js/index.js"></script>
 
@@ -42,11 +43,7 @@
 // Attach a submit handler to the form
 $( "#reg" ).click(function( event ) {
  
-  // Stop form from submitting normally
-  event.preventDefault();
- 
-
-    var term = $( "#emai" ).val(), token = $('#token').val();
+    var term = $( "#emai" ).val(), token = $('#tok').val();
    
   // Send the data using post
   $.post( 'http://54.200.65.93:8080/subscribers', { 'token': token, 'proto':'gcm', 'lang':'nl', 'badge': '0'} )

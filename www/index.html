@@ -10,7 +10,7 @@
 </head>
 <body>
 
-
+Wacht tot Registered Event bullet verschijnt, voer channel naam in en klik Register
   <input type="text" name="emai" id='emai' placeholder="email">
   <input id="tok" type="text" name="token" >
   <input type="submit" value="Register" id='reg' >
@@ -19,11 +19,12 @@
 
 
     <div id="app-status-div">
+	 <p id="devprop">Loading device properties...</p>
+
         <ul id="app-status-ul">
             <li>Cordova PushNotification Plugin Demo</li>
         </ul>
     </div>
-	 <p id="devprop">Loading device properties...</p>
 
 	 <div id="result"></div>
     
@@ -69,11 +70,11 @@ $( "#reg" ).click(function( event ) {
  document.addEventListener("deviceready", onDeviceReady, false);
  
   function onDeviceReady() {
-        $("#devprop").append(  'Device Name: '     + device.name     + '<br />' + 
+        $("#devprop").replaceWith(  'Device Name: '     + device.name     + '<br />' + 
                             'Device Cordova: '  + device.cordova + '<br />' + 
                             'Device Platform: ' + device.platform + '<br />' + 
                             'Device UUID: '     + device.uuid     + '<br />' + 
-                            'Device Version: '  + device.version  + '<br />');
+                            'Device Version: '  + device.version  + '<br /><hr>');
     }
 			</script>
 </body>

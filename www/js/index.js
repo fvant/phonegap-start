@@ -58,7 +58,7 @@ var appmob = {
 },
 // result contains any message sent from the plugin call
 successHandler: function(result) {
-    alert('Callback Success! Result = '+result);
+   // alert('Callback Success! Result = '+result);
 },
 errorHandler:function(error) {
     alert(error);
@@ -80,6 +80,8 @@ onNotificationGCM: function(e) {
     break;
 
     case 'message':
+    	
+    	$("#app-status-ul").append(e);
         // if this flag is set, this notification happened while we were in the foreground.
         // you might want to play a sound to get the user's attention, throw up a dialog, etc.
         if ( e.foreground )
@@ -102,8 +104,8 @@ onNotificationGCM: function(e) {
             }
         }
 
-        $("#app-status-ul").append('<li>MESSAGE -> MSG: ' + e.payload.message + '</li>');
-        $("#app-status-ul").append('<li>MESSAGE -> MSGCNT: ' + e.payload.msgcnt + '</li>');
+        //$("#app-status-ul").append('<li>MESSAGE -> MSG: ' + e.payload.message + '</li>');
+        //$("#app-status-ul").append('<li>MESSAGE -> MSGCNT: ' + e.payload.msgcnt + '</li>');
     break;
 
     case 'error':

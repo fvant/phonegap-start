@@ -50,9 +50,8 @@ $( "#reg" ).click(function( event ) {
     .done(function( data ) {
     $( "#result" ).append( data );
 	
-	  $.get('http://54.200.65.93:8080/subscriber/'+data.id+'/subscriptions/'+term)
+	  $.post('http://54.200.65.93:8080/subscriber/'+data.id+'/subscriptions/'+term)
   .done(function( data) {
-  	alert('event');
   	$( "#result" ).append( data );
   });
 

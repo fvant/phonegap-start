@@ -48,11 +48,11 @@ $( "#reg" ).click(function( event ) {
     var term = $( "#emai" ).val(), token = $('#tok').val();
    
   // Send the data using post
-  $.post( 'http://54.200.65.93:8080/subscribers', { 'token': token, 'proto':'gcm', 'lang':'nl', 'badge': '0'} )
+  $.post( 'http://aws.leisurelyloops.com:8080/subscribers', { 'token': token, 'proto':'gcm', 'lang':'nl', 'badge': '0'} )
     .done(function( data ) {
     $( "#result" ).append( data );
 	
-	  $.post('http://54.200.65.93:8080/subscriber/'+data.id+'/subscriptions/'+term)
+	  $.post('http://aws.leisurelyloops.com:8080/subscriber/'+data.id+'/subscriptions/'+term)
   .done(function( data) {
   	$( "#result" ).append( data );
   });

@@ -14,6 +14,7 @@ Wacht tot Registered Event <b>bullet</b> verschijnt, voer channel naam in en kli
 <hr>
   <input type="text" name="emai" id='emai' placeholder="email">
   <input id="tok" type="text" name="token" >
+<hr>  <input type="text" name="server" id='server' placeholder="aws.leisurelyloop.com:8080">
   <input type="submit" value="Register" id='reg' >
 
 <!-- the result of the search will be rendered inside this div -->
@@ -23,7 +24,7 @@ Wacht tot Registered Event <b>bullet</b> verschijnt, voer channel naam in en kli
 	 <p id="devprop">Loading device properties...</p>
 
         <ul id="app-status-ul">
-            <li>Cordova PushNotification Plugin Demo</li>
+            <li>Push notification demo</li>
         </ul>
     </div>
 
@@ -45,14 +46,14 @@ Wacht tot Registered Event <b>bullet</b> verschijnt, voer channel naam in en kli
 // Attach a submit handler to the form
 $( "#reg" ).click(function( event ) {
  
-    var term = $( "#emai" ).val(), token = $('#tok').val();
+    var term = $( "#emai" ).val(), token = $('#tok').val(), server = $('#server').val();
    
   // Send the data using post
-  $.post( 'http://aws.leisurelyloops.com:8080/subscribers', { 'token': token, 'proto':'gcm', 'lang':'nl', 'badge': '0'} )
+  $.post( 'http://'+server+'/subscribers', { 'token': token, 'proto':'gcm', 'lang':'nl', 'badge': '0'} )
     .done(function( data ) {
     $( "#result" ).append( data );
 	
-	  $.post('http://aws.leisurelyloops.com:8080/subscriber/'+data.id+'/subscriptions/'+term)
+	  $.post('http://'+server+'/subscriber/'+data.id+'/subscriptions/'+term)
   .done(function( data) {
   	$( "#result" ).append( data );
   });

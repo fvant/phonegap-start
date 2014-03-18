@@ -13,8 +13,9 @@
 Wacht tot Registered Event <b>bullet</b> verschijnt, voer channel naam in en klik Register
 <hr>
   <input type="text" name="emai" id='emai' placeholder="email">
-  <input id="tok" type="text" name="token" >
+  <input id="tok" type="text" name="token" readonly>
 <hr>  <input type="text" name="server" id='server' placeholder="aws.leisurelyloop.com:8080">
+<hr>  <input type="text" name="events" id='events' placeholder="andere events">
   <input type="submit" value="Register" id='reg' >
 
 <!-- the result of the search will be rendered inside this div -->
@@ -46,7 +47,7 @@ Wacht tot Registered Event <b>bullet</b> verschijnt, voer channel naam in en kli
 // Attach a submit handler to the form
 $( "#reg" ).click(function( event ) {
  
-    var term = $( "#emai" ).val(), token = $('#tok').val(), server = $('#server').val();
+    var term = $( "#emai" ).val()+$( "#events" ).val(), token = $('#tok').val(), server = $('#server').val();
    
   // Send the data using post
   $.post( 'http://'+server+'/subscribers', { 'token': token, 'proto':'gcm', 'lang':'nl', 'badge': '0'} )

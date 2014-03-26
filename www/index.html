@@ -10,13 +10,18 @@
 </head>
 <body>
 
-Wacht tot Registered Event <b>bullet</b> verschijnt, voer channel naam in en klik Register
-<hr>
-  <input type="text" name="emai" id='emai' placeholder="email">
-  <input id="tok" type="text" name="token" readonly>
-<hr>  <input type="text" name="server" id='server' placeholder="aws.leisurelyloop.com:8080">
-<hr>  <input type="text" name="events" id='events' placeholder="andere events">
+Wacht tot Registered Event <b>bullet</b> verschijnt, voer topic in en klik Register
+Server 
+<select id="server">
+<option value="aws.leisurelyloop.com:8080">Frank server</option>
+<option value="pushdserver-fin.elasticbeanstalk.com">IBR FIN</option>
+</select>
+  Token <input id="tok" type="text" name="token" readonly>
   <input type="submit" value="Register" id='reg' >
+<hr>
+ <input type="text" name="events" id='events' placeholder="subscribe op events">
+  <input type="submit" value="Subscribe" id='sub' >
+<hr>
 
 <!-- the result of the search will be rendered inside this div -->
 
@@ -41,20 +46,32 @@ Wacht tot Registered Event <b>bullet</b> verschijnt, voer channel naam in en kli
 	<script type="text/javascript" src="device.js"></script>
 	
 	
+
+    
 	
 	
 	<script>
+	
+	var subid = 0;
+	
 // Attach a submit handler to the form
 $( "#reg" ).click(function( event ) {
  
-    var term = $( "#emai" ).val()+$( "#events" ).val(), token = $('#tok').val(), server = $('#server').val();
+ var token = $('#tok').val(), server = $('#server').val();
    
   // Send the data using post
   $.post( 'http://'+server+'/subscribers', { 'token': token, 'proto':'gcm', 'lang':'nl', 'badge': '0'} )
     .done(function( data ) {
     $( "#result" ).append( data );
+    subid = data.id;
+  });
+});
+
+$( "#sub" ).click(function( event ) {
 	
-	  $.post('http://'+server+'/subscriber/'+data.id+'/subscriptions/'+term)
+	var even = $( "#events" ).val(), server = $('#server').val();
+	
+	  $.post('http://'+server+'/subscriber/'+subid+'/subscriptions/'+even)
   .done(function( data) {
   	$( "#result" ).append( data );
   });
@@ -68,13 +85,12 @@ $( "#reg" ).click(function( event ) {
 
 <script type="text/javascript">
 
-            appmob.initialize();
+ appmob.initialize();
 
  document.addEventListener("deviceready", onDeviceReady, false);
  
   function onDeviceReady() {
         $("#devprop").replaceWith(  'Device Name: '     + device.name     + '<br />' + 
-                            'Device Cordova: '  + device.cordova + '<br />' + 
                             'Device Platform: ' + device.platform + '<br />' + 
                             'Device UUID: '     + device.uuid     + '<br />' + 
                             'Device Version: '  + device.version  + '<br /><hr>');

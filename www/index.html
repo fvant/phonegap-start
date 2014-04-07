@@ -82,6 +82,7 @@ $( "#reg" ).click(function( event ) {
   // Send the data using post
   $.post( 'http://'+server+'/subscribers', { 'token': token, 'proto':'gcm', 'lang':'nl', 'badge': '0'} )
     .done(function( data ) {
+    console.log(data);
     $( "#result" ).append( data );
     subid = data.id;
   });
@@ -94,6 +95,7 @@ $( "#unreg" ).click(function( event ) {
   // Send the data using post
   $.delete( 'http://'+server+'/subscriber/'+subid )
     .done(function( data ) {
+    console.log(data);
     $( "#result" ).append( data );
   });
   	var pushNotification = window.plugins.pushNotification;
@@ -107,6 +109,7 @@ $( "#test" ).click(function( event ) {
   // Send the data using post
   $.post( 'http://'+server+'/subscriber/'+subid+ '/test')
     .done(function( data ) {
+    console.log(data);
     $( "#result" ).append( data );
   });
 });

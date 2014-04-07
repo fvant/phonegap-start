@@ -41,18 +41,12 @@ Server
     
 	<script type="text/javascript" src="js/index.js"></script>
 
-    <script src="Scripts/jquery-1.8.3.min.js"></script>
-
+    <script type="text/javascript" src="jquery-2.1.0.min.js"></script>
 
 	<script type="text/javascript" src="phonegap.js"></script>
 	<script type="text/javascript" src="PushNotification.js"></script>
 	<script type="text/javascript" src="device.js"></script>
-	
-	
-
-    
-	
-	
+		
 	<script>
 
 $.delete = function(url, data, callback, type){
@@ -82,7 +76,7 @@ $( "#reg" ).click(function( event ) {
   // Send the data using post
   $.post( 'http://'+server+'/subscribers', { 'token': token, 'proto':'gcm', 'lang':'nl', 'badge': '0'} )
     .done(function( data ) {
-    console.log(data);
+    console.log(data.toSource());
     $( "#result" ).append( data );
     subid = data.id;
   });
@@ -99,7 +93,7 @@ $( "#unreg" ).click(function( event ) {
     $( "#result" ).append( data );
   });
   	var pushNotification = window.plugins.pushNotification;
-	pushNotification.unregister(function(){alert(result)}, function(){alert(error)});
+	pushNotification.unregister(function(){$( "#result" ).append( result ); alert(result)}, function(){$( "#result" ).append( error ); alert(error)});
 });
 
 $( "#test" ).click(function( event ) {

@@ -19,6 +19,8 @@ Server
   Token <input id="tok" type="text" name="token" readonly>
   <input type="submit" value="Register" id='reg' >
 <hr>
+  <input type="submit" value="UNregister" id='unreg' >
+<hr>
  <input type="text" name="events" id='events' placeholder="subscribe op events">
   <input type="submit" value="Subscribe" id='sub' >
 <hr>
@@ -51,6 +53,23 @@ Server
 	
 	
 	<script>
+
+$.delete = function(url, data, callback, type){
+ 
+  if ( $.isFunction(data) ){
+    type = type || callback,
+        callback = data,
+        data = {}
+  }
+ 
+  return $.ajax({
+    url: url,
+    type: 'DELETE',
+    success: callback,
+    data: data,
+    contentType: type
+  });
+}
 	
 	var subid = 0;
 	
@@ -66,6 +85,22 @@ $( "#reg" ).click(function( event ) {
     subid = data.id;
   });
 });
+
+
+$( "#unreg" ).click(function( event ) {
+ 
+ var token = $('#tok').val(), server = $('#server').val();
+   
+  // Send the data using post
+  $.delete( 'http://'+server+'/subscriber/'+subid )
+    .done(function( data ) {
+    $( "#result" ).append( data );
+    subid = data.id;
+  });
+  	var pushNotification = window.plugins.pushNotification;
+	pushNotification.unregister(function(){alert(result)}, function(){alert(error)});
+});
+
 
 $( "#sub" ).click(function( event ) {
 	

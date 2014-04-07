@@ -17,9 +17,10 @@ Server
 <option value="aws.leisurelyloop.com:8080">Frank server</option>
 <option value="pushdserver-fin.elasticbeanstalk.com">IBR FIN</option>
 </select>
-  Token <input id="tok" type="text" name="token" readonly><br>
+  <input id="tok" type="text" name="token" readonly><br>
   <input type="submit" value="Register" id='reg' >
   <input type="submit" value="UNregister" id='unreg' >
+  <input type="submit" value="TEST" id='test' >
 <hr>
  <input type="text" name="events" id='events' placeholder="subscribe op events"><br>
   <input type="submit" value="Subscribe" id='sub' >
@@ -86,19 +87,28 @@ $( "#reg" ).click(function( event ) {
   });
 });
 
-
 $( "#unreg" ).click(function( event ) {
  
- var token = $('#tok').val(), server = $('#server').val();
+  server = $('#server').val();
    
   // Send the data using post
   $.delete( 'http://'+server+'/subscriber/'+subid )
     .done(function( data ) {
     $( "#result" ).append( data );
-    subid = data.id;
   });
   	var pushNotification = window.plugins.pushNotification;
 	pushNotification.unregister(function(){alert(result)}, function(){alert(error)});
+});
+
+$( "#test" ).click(function( event ) {
+ 
+  server = $('#server').val();
+   
+  // Send the data using post
+  $.post( 'http://'+server+'/subscriber/'+subid+ '/test')
+    .done(function( data ) {
+    $( "#result" ).append( data );
+  });
 });
 
 

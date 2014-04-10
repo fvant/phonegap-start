@@ -40,19 +40,9 @@ var appmob = {
     // Update DOM on a Received Event
     receivedEvent: function(id) {
 
-
-	
 	var pushNotification = window.plugins.pushNotification;
 	pushNotification.register(this.successHandler, this.errorHandler,{"senderID":"323146162607","ecb":"appmob.onNotificationGCM"});
-//	pushNotification.register(this.successHandler, this.errorHandler,{"senderID":"1082423790871","ecb":"appmob.onNotificationGCM"});
 		
-    //    var parentElement = document.getElementById(id);
-      //  var listeningElement = parentElement.querySelector('.listening');
-        //var receivedElement = parentElement.querySelector('.received');
-
-       // listeningElement.setAttribute('style', 'display:none;');
-       // receivedElement.setAttribute('style', 'display:block;');
-
         console.log('Received Event: ' + id);
 		
 },
@@ -64,7 +54,7 @@ errorHandler:function(error) {
     alert(error);
 },
 onNotificationGCM: function(e) {
-   $("#app-status-ul").append('<li>EVENT -> RECEIVED:' + e.event + '</li>');
+//   $("#app-status-ul").append('<li>EVENT -> RECEIVED:' + e.event + '</li>');
 
     switch( e.event )
     {
@@ -89,8 +79,7 @@ onNotificationGCM: function(e) {
             $("#app-status-ul").append('<li>--INLINE NOTIFICATION--' + '</li>');
 
             // if the notification contains a soundname, play it.
-//            var my_media = new Media(e.soundname);
-            var my_media = new Media('bikehorn.wav');
+            var my_media = new Media('/android_asset/www/'+e.soundname+'bikehorn.wav');
             my_media.play();
         }
         else

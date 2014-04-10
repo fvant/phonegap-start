@@ -10,8 +10,8 @@
 </head>
 <body>
 
-Wacht tot Registered Event <b>bullet</b> verschijnt, voer topic in en klik Register
-Server 
+Wacht tot Registered Event <b>bullet</b> verschijnt<br>
+Klik Register, vul <i>topic</i> in en Subscribe.
 <p>
 <select id="server">
 <option value="aws.leisurelyloops.com:8080">Frank server</option>
@@ -38,11 +38,11 @@ Server
         </ul>
     </div>
 
-	 <div id="result"></div>
+	 <div id="result"><p></div>
     
 	<script type="text/javascript" src="js/index.js"></script>
 
-    <script type="text/javascript" src="Scripts/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="jquery-2.1.0.min.js"></script>
 
 	<script type="text/javascript" src="phonegap.js"></script>
 	<script type="text/javascript" src="PushNotification.js"></script>
@@ -63,9 +63,8 @@ $( "#reg" ).click(function( event ) {
    
   // Send the data using post
   $.post( 'http://'+server+'/subscribers', { 'token': token, 'proto':'gcm', 'lang':'nl', 'badge': '0'} )
-    .done(function( data ) {
-    console.log(data.toSource());
-    $( "#result" ).append( data );
+    .done(function( data ) { 
+    $( "#result" ).before( data.id );
     subid = data.id;
   });
 });
@@ -77,11 +76,10 @@ $( "#unreg" ).click(function( event ) {
   // Send the data using post
   $.post( 'http://'+server+'/subscriber/'+subid )
     .done(function( data ) {
-    console.log(data);
-    $( "#result" ).append( data );
-  });
+    $( "#result" ).before( data );
   	var pushNotification = window.plugins.pushNotification;
-	pushNotification.unregister(function(){$( "#result" ).append( result ); alert(result)}, function(){$( "#result" ).append( error ); alert(error)});
+	pushNotification.unregister(function(){$( "#result" ).append( result ); alert(result)}, function(){$( "#result" ).append( error ); alert(error)});    
+  });
 });
 
 $( "#test" ).click(function( event ) {
@@ -91,8 +89,7 @@ $( "#test" ).click(function( event ) {
   // Send the data using post
   $.post( 'http://'+server+'/subscriber/'+subid+ '/test')
     .done(function( data ) {
-    console.log(data);
-    $( "#result" ).append( data );
+    $( "#result" ).before( data );
   });
 });
 
@@ -103,7 +100,7 @@ $( "#sub" ).click(function( event ) {
 	
 	  $.post('http://'+server+'/subscriber/'+subid+'/subscriptions/'+even)
   .done(function( data) {
-  	$( "#result" ).append( data );
+  	$( "#result" ).before( data );
   });
 
   });

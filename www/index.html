@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-ng-app="TodoMain">
+<html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
@@ -16,6 +16,7 @@ Server
 <select id="server">
 <option value="aws.leisurelyloop.com:8080">Frank server</option>
 <option value="pushdserver-fin.elasticbeanstalk.com">IBR FIN</option>
+<option value="pushdserver-fac.elasticbeanstalk.com">IBR FAC</option>
 </select>
   <input id="tok" type="text" name="token" readonly><br>
   <input type="submit" value="Register" id='reg' >
@@ -49,8 +50,11 @@ Server
 		
 	<script>
 
+$( document ).ready(function() {
 	
-	var subid = 0;
+$.support.cors = true; $.mobile.allowCrossDomainPages = true;
+
+var subid = 0;
 	
 // Attach a submit handler to the form
 $( "#reg" ).click(function( event ) {
@@ -71,7 +75,7 @@ $( "#unreg" ).click(function( event ) {
   server = $('#server').val();
    
   // Send the data using post
-  $.delete( 'http://'+server+'/subscriber/'+subid )
+  $.post( 'http://'+server+'/subscriber/'+subid )
     .done(function( data ) {
     console.log(data);
     $( "#result" ).append( data );
@@ -103,6 +107,8 @@ $( "#sub" ).click(function( event ) {
   });
 
   });
+  
+});
 </script>
 
 

@@ -15,7 +15,7 @@
         Login en krijg push noti.
     </description>
 
-	<preference name="phonegap-version" value="3.0.0" />
+	<preference name="phonegap-version" value="3.4.0" />
 	
     <author href="http://phonegap.com" email="support@phonegap.com">
         Frank

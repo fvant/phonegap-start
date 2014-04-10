@@ -4,7 +4,7 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "org.vantol.beep"
-        version   = "1.4.3">
+        version   = "1.4.4">
 
 		<gap:platform name="android" />
 		

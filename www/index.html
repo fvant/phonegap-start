@@ -54,6 +54,10 @@ $( document ).ready(function() {
 	
 $.support.cors = true;
 
+function logscreen (data) {
+    $( "#result" ).before( data+'<br>' );
+}
+
 jQuery.each( [ "put", "delete" ], function( i, method ) {
   jQuery[ method ] = function( url, data, callback, type ) {
     if ( jQuery.isFunction( data ) ) {
@@ -82,7 +86,7 @@ $( "#reg" ).click(function( event ) {
   // Send the data using post
   $.post( 'http://'+server+'/subscribers', { 'token': token, 'proto':'gcm', 'lang':'nl', 'badge': '0'} )
     .done(function( data ) { 
-    $( "#result" ).before( data.id );
+    logscreen( data.id );
     subid = data.id;
   });
 });
@@ -94,9 +98,9 @@ $( "#unreg" ).click(function( event ) {
   // Send the data using post
   $.delete( 'http://'+server+'/subscriber/'+subid )
     .done(function( data ) {
-    $( "#result" ).before( data );
+    logscreen( data );
   	var pushNotification = window.plugins.pushNotification;
-	pushNotification.unregister(function(){$( "#result" ).append( result ); alert(result)}, function(){$( "#result" ).append( error ); alert(error)});    
+	pushNotification.unregister(function(){$( "#result" ).append( result );}, function(){$( "#result" ).append( error );});    
   });
 });
 
@@ -107,7 +111,7 @@ $( "#test" ).click(function( event ) {
   // Send the data using post
   $.post( 'http://'+server+'/subscriber/'+subid+ '/test')
     .done(function( data ) {
-    $( "#result" ).before( data );
+    logscreen( data );
   });
 });
 
@@ -118,7 +122,7 @@ $( "#sub" ).click(function( event ) {
 	
 	  $.post('http://'+server+'/subscriber/'+subid+'/subscriptions/'+even)
   .done(function( data) {
-  	$( "#result" ).before( data );
+  	logscreen( data );
   });
 
   });
@@ -129,7 +133,7 @@ $( "#unsub" ).click(function( event ) {
 	
 	  $.delete('http://'+server+'/subscriber/'+subid+'/subscriptions/'+even)
   .done(function( data) {
-  	$( "#result" ).before( data );
+  	logscreen( data );
   });
 
   });

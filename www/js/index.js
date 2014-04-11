@@ -79,7 +79,7 @@ onNotificationGCM: function(e) {
             $("#app-status-ul").append('<li>--INLINE NOTIFICATION--' + '</li>');
 
             // if the notification contains a soundname, play it.
-            var my_media = new Media('/android_asset/www/'+e.soundname+'bikehorn.wav');
+            var my_media = new Media('file://android_asset/www/bikehorn.wav');
             my_media.play();
         }
         else

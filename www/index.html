@@ -25,6 +25,7 @@ Klik Register, vul <i>topic</i> in en Subscribe.
 <hr>
  <input type="text" name="events" id='events' placeholder="subscribe op events"><br>
   <input type="submit" value="Subscribe" id='sub' >
+  <input type="submit" value="UNsubscribe" id='unsub' >
 <hr>
 
 	 <div id="result"><p></div>
@@ -53,6 +54,24 @@ $( document ).ready(function() {
 	
 $.support.cors = true;
 
+jQuery.each( [ "put", "delete" ], function( i, method ) {
+  jQuery[ method ] = function( url, data, callback, type ) {
+    if ( jQuery.isFunction( data ) ) {
+      type = type || callback;
+      callback = data;
+      data = undefined;
+    }
+
+    return jQuery.ajax({
+      url: url,
+      type: method,
+      dataType: type,
+      data: data,
+      success: callback
+    });
+  };
+});
+
 var subid = 0;
 	
 // Attach a submit handler to the form
@@ -73,7 +92,7 @@ $( "#unreg" ).click(function( event ) {
   server = $('#server').val();
    
   // Send the data using post
-  $.post( 'http://'+server+'/subscriber/'+subid )
+  $.delete( 'http://'+server+'/subscriber/'+subid )
     .done(function( data ) {
     $( "#result" ).before( data );
   	var pushNotification = window.plugins.pushNotification;
@@ -98,6 +117,17 @@ $( "#sub" ).click(function( event ) {
 	var even = $( "#events" ).val(), server = $('#server').val();
 	
 	  $.post('http://'+server+'/subscriber/'+subid+'/subscriptions/'+even)
+  .done(function( data) {
+  	$( "#result" ).before( data );
+  });
+
+  });
+
+$( "#unsub" ).click(function( event ) {
+	
+	var even = $( "#events" ).val(), server = $('#server').val();
+	
+	  $.delete('http://'+server+'/subscriber/'+subid+'/subscriptions/'+even)
   .done(function( data) {
   	$( "#result" ).before( data );
   });

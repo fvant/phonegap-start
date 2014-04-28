@@ -14,9 +14,9 @@ Wacht tot Registered Event <b>bullet</b> verschijnt<br>
 Klik Register, vul <i>topic</i> in en Subscribe.
 <p>
 <select id="server">
-<option value="aws.leisurelyloops.com:8080">Frank server</option>
-<option value="pushdserver-fin.elasticbeanstalk.com">IBR FIN</option>
-<option value="pushdserver-fac.elasticbeanstalk.com">IBR FAC</option>
+<option value="http://aws.leisurelyloops.com:8080">Frank server</option>
+<option value="https://pushd-fin.ibridgeservices.com">IBR FIN</option>
+<option value="https://pushd-fac.ibridgeservices.com">IBR FAC</option>
 </select>
   <input id="tok" type="text" name="token" readonly><br>
   <input type="submit" value="Register" id='reg' >
@@ -84,7 +84,7 @@ $( "#reg" ).click(function( event ) {
  var token = $('#tok').val(), server = $('#server').val();
    
   // Send the data using post
-  $.post( 'http://'+server+'/subscribers', { 'token': token, 'proto':'gcm', 'lang':'nl', 'badge': '0'} )
+  $.post( server+'/subscribers', { 'token': token, 'proto':'gcm', 'lang':'nl', 'badge': '0'} )
     .done(function( data ) { 
     logscreen( data.id );
     subid = data.id;
@@ -96,7 +96,7 @@ $( "#unreg" ).click(function( event ) {
   server = $('#server').val();
    
   // Send the data using post
-  $.delete( 'http://'+server+'/subscriber/'+subid )
+  $.delete( server+'/subscriber/'+subid )
     .done(function( data ) {
     logscreen( data );
   	var pushNotification = window.plugins.pushNotification;
@@ -109,7 +109,7 @@ $( "#test" ).click(function( event ) {
   server = $('#server').val();
    
   // Send the data using post
-  $.post( 'http://'+server+'/subscriber/'+subid+ '/test')
+  $.post( server+'/subscriber/'+subid+ '/test')
     .done(function( data ) {
     logscreen( data );
   });
@@ -120,7 +120,7 @@ $( "#sub" ).click(function( event ) {
 	
 	var even = $( "#events" ).val(), server = $('#server').val();
 	
-	  $.post('http://'+server+'/subscriber/'+subid+'/subscriptions/'+even)
+	  $.post(server+'/subscriber/'+subid+'/subscriptions/'+even)
   .done(function( data) {
   	logscreen( data );
   });
@@ -131,7 +131,7 @@ $( "#unsub" ).click(function( event ) {
 	
 	var even = $( "#events" ).val(), server = $('#server').val();
 	
-	  $.delete('http://'+server+'/subscriber/'+subid+'/subscriptions/'+even)
+	  $.delete(server+'/subscriber/'+subid+'/subscriptions/'+even)
   .done(function( data) {
   	logscreen( data );
   });

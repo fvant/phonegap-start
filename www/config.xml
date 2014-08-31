@@ -4,7 +4,7 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "org.vantol.beep"
-        version   = "1.4.7">
+        version   = "1.4.8">
 
 		<gap:platform name="android" />
 		
@@ -15,7 +15,7 @@
         Test de push notificaties voor DNA
     </description>
 
-	<preference name="phonegap-version" value="3.4.0" />
+	<preference name="phonegap-version" value="3.5.0" />
 	
     <author href="http://phonegap.com" email="frank">
         Frank v Tol
